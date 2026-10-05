@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FlowPilot AI</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="shell">
+  <header>
+    <div class="brand"><span class="logo">✦</span> FlowPilot <span class="ai">AI</span></div>
+    <div class="status"><span class="dot"></span> Agent ready</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">GOAL-BASED AUTOMATION</p>
+      <h1>Tell FlowPilot what you want.<br><span>Let it figure out the workflow.</span></h1>
+      <p class="sub">Turn one natural-language goal into an organized, adaptive workflow.</p>
+
+      <div class="input-card">
+        <label for="goal">What do you want to accomplish?</label>
+        <textarea id="goal" placeholder='Try: "I have a hackathon next Friday. Get me ready."'></textarea>
+        <div class="actions">
+          <button id="planBtn" onclick="createPlan()">✦ Create workflow</button>
+          <button class="ghost" onclick="fillExample()">Use example</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="workspace" class="workspace hidden">
+      <div class="workspace-head">
+        <div>
+          <p class="eyebrow">ACTIVE WORKFLOW</p>
+          <h2 id="goalTitle"></h2>
+        </div>
+        <button class="ghost" onclick="showReplan()">↻ Adapt workflow</button>
+      </div>
+
+      <div class="grid">
+        <div class="panel">
+          <div class="panel-title"><span>Workflow</span><span id="progressText">0% complete</span></div>
+          <div id="tasks"></div>
+        </div>
+
+        <div class="panel insight">
+          <div class="panel-title">Agent reasoning</div>
+          <div class="reason">
+            <div class="reason-icon">✦</div>
+            <div>
+              <strong>Goal understood</strong>
+              <p>FlowPilot converted your request into actionable steps and prioritized the work.</p>
+            </div>
+          </div>
+          <div class="reason">
+            <div class="reason-icon">✓</div>
+            <div>
+              <strong>Human control</strong>
+              <p>Important actions can require confirmation before execution.</p>
+            </div>
+          </div>
+          <div class="reason">
+            <div class="reason-icon">↻</div>
+            <div>
+              <strong>Adaptive planning</strong>
+              <p>If your constraints change, FlowPilot can re-plan instead of following a fixed list.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <div id="replanModal" class="modal hidden">
+    <div class="modal-box">
+      <button class="close" onclick="hideReplan()">×</button>
+      <p class="eyebrow">ADAPTIVE AUTOMATION</p>
+      <h3>What changed?</h3>
+      <p>Tell FlowPilot about the new constraint and it will prioritize the workflow.</p>
+      <input id="constraint" placeholder='Example: "I only have 30 minutes."'>
+      <button onclick="replan()">Adapt my workflow</button>
+    </div>
+  </div>
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>
